@@ -7,5 +7,14 @@ module.exports = defineConfig({
     webpackConfig
       .plugin('vue-skeleton-plugin')
         .use(VueSkeletonPlugin)
+    webpackConfig.optimization.minimizer('terser').tap(args => {
+      return [...args, {
+        terserOptions: {
+          compress: {
+            drop_console: false
+          }
+        }
+      }]
+    })
   }
 });
